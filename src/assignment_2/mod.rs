@@ -18,8 +18,9 @@ pub fn run() -> Result<(), Box<dyn error::Error>> {
     };
 
     let result = input.fold(initial_acc, |acc, val| {
-        if acc.vals.len() < 3 {
-            let mut vals = acc.vals;
+        let mut vals = acc.vals;
+
+        if vals.len() < 3 {
             vals.insert(0, val);
 
             return Acc {
@@ -27,8 +28,6 @@ pub fn run() -> Result<(), Box<dyn error::Error>> {
                 vals,
             };
         }
-
-        let mut vals = acc.vals;
 
         if vals.len() > 3 {
             vals = vals[..3].into();
@@ -40,9 +39,6 @@ pub fn run() -> Result<(), Box<dyn error::Error>> {
         let next_sum = vals[0] + vals[1] + vals[2];
 
         let mut count = acc.count;
-
-        dbg!(prev_sum);
-        dbg!(next_sum);
 
         if prev_sum < next_sum {
             count += 1;
