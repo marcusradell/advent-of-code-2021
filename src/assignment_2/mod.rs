@@ -7,7 +7,7 @@ struct Acc {
 }
 
 pub fn run() -> Result<(), Box<dyn error::Error>> {
-    let mut input = include_str!("input.txt")
+    let input = include_str!("input.txt")
         .split('\n')
         .map(str::parse::<i64>)
         .map(Result::unwrap);
